@@ -3,17 +3,18 @@ const uploadBox = document.querySelector(".upload-box"),
   fileInput = uploadBox.querySelector("input"),
   widthInput = document.querySelector(".width input"),
   heightInput = document.querySelector(".height input"),
-  ratioInput = document.querySelector("#ratio"),
-  qualityInput = document.querySelector("#quality"),
+  ratioInput = document.querySelector(".ratio input"),
+  qualityInput = document.querySelector(".quality input"),
   downloadBtn = document.querySelector(".download-btn");
 
 let ogImageRatio;
+
 const loadFile = (e) => {
   const file = e.target.files[0]; // getting first user selected file
   if (!file) return; // return if user hasn't selected any file
-  PeriodicWave.src = URL.createObjectURL(file); // passing selected file url to previewImg
+  previewImg.src = URL.createObjectURL(file); // passing selected file url to preview img src
   previewImg.addEventListener("load", () => {
-    // once image loaded
+    // once img loaded
     widthInput.value = previewImg.naturalWidth;
     heightInput.value = previewImg.naturalHeight;
     ogImageRatio = previewImg.naturalWidth / previewImg.naturalHeight;
@@ -22,14 +23,15 @@ const loadFile = (e) => {
 };
 
 widthInput.addEventListener("keyup", () => {
-  //getting height according to the ratio check box status
+  // getting height according to the ratio checkbox status
   const height = ratioInput.checked
     ? widthInput.value / ogImageRatio
     : heightInput.value;
   heightInput.value = Math.floor(height);
 });
+
 heightInput.addEventListener("keyup", () => {
-  //getting width according to the ratio check box status
+  // getting width according to the ratio checkbox status
   const width = ratioInput.checked
     ? heightInput.value * ogImageRatio
     : widthInput.value;
@@ -41,19 +43,20 @@ const resizeAndDownload = () => {
   const a = document.createElement("a");
   const ctx = canvas.getContext("2d");
 
-  // 1.0 is 100% quality and 0.7 is 70% quality of Total
-  const imgQuality = qualityInput.checked ? 0.7 : 1.0;
+  // if quality checkbox is checked, pass 0.5 to imgQuality else pass 1.0
+  // 1.0 is 100% quality where 0.5 is 50% of total. you can pass from 0.1 - 1.0
+  const imgQuality = qualityInput.checked ? 0.5 : 1.0;
 
-  //setting canvas width & height according to the input values
+  // setting canvas height & width according to the input values
   canvas.width = widthInput.value;
   canvas.height = heightInput.value;
 
-  //drawing user selected image into the canvas
+  // drawing user selected image onto the canvas
   ctx.drawImage(previewImg, 0, 0, canvas.width, canvas.height);
 
   // passing canvas data url as href value of <a> element
   a.href = canvas.toDataURL("image/jpeg", imgQuality);
-  a.download = new Date().getTime(); //passing current time as download value
+  a.download = new Date().getTime(); // passing current time as download value
   a.click(); // clicking <a> element so the file download
 };
 

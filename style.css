@@ -1,76 +1,71 @@
+/* Import Google font - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
 :root {
   --primary-color: #927dfc;
   --primary-font-size: 0.85rem;
+  --font: "Poppins", sans-serif;
 }
 
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: var(--font);
 }
-
 body {
-  font-family: "Poppins", sans-serif;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   min-height: 100vh;
-  background-color: var(--primary-color);
+  background: var(--primary-color);
 }
-
 .container {
   width: 450px;
   height: 288px;
   padding: 30px;
-  background-color: #fff;
-  border-radius: 10px;
-}
-
-/* Upload Box  */
-
-.container .upload-box {
-  height: 225px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border: 2px dashed #afafaf;
-  border-radius: 5px;
-  cursor: pointer;
+  background: #fff;
+  border-radius: 9px;
   transition: height 0.2s ease;
 }
 .container.active {
   height: 537px;
 }
+.container .upload-box {
+  height: 225px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+  border: 2px dashed #afafaf;
+}
 .container.active .upload-box {
   border: none;
 }
-.container.active p {
+.upload-box p {
+  font-size: var(--primary-font-size);
+  margin-top: 20px;
+}
+.container.active .upload-box p {
   display: none;
 }
 .container.active .upload-box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 5px;
+}
+.container .content {
+  opacity: 0;
+  margin-top: 28px;
+  pointer-events: none;
 }
 .container.active .content {
   opacity: 1;
   pointer-events: auto;
-  transition: opacity 0.5s 0.5s ease;
-}
-.upload-box p {
-  font-size: var(--primary-font-size);
-  margin-top: 20px;
-}
-
-/* Content  */
-
-.container .content {
-  opacity: 0;
-  margin-top: 1.5rem;
-  pointer-events: none;
+  transition: opacity 0.5s 0.05s ease;
 }
 .content .row {
   display: flex;
@@ -82,12 +77,9 @@ body {
 .row .column label {
   font-size: var(--primary-font-size);
 }
-
-/* Sizes  */
-
 .sizes .column input {
   width: 100%;
-  height: 30px;
+  height: 49px;
   outline: none;
   margin-top: 7px;
   padding: 0 15px;
@@ -99,11 +91,8 @@ body {
   padding: 0 14px;
   border: 2px solid var(--primary-color);
 }
-
-/* CheckBoxes  */
-
 .content .checkboxes {
-  margin-top: 1.5rem;
+  margin-top: 20px;
 }
 .checkboxes .column {
   display: flex;
@@ -115,19 +104,16 @@ body {
   margin-right: 9px;
   accent-color: var(--primary-color);
 }
-
-/* Button  */
-
 .content .download-btn {
   width: 100%;
   color: #fff;
   outline: none;
   border: none;
-  border-radius: 5px;
+  cursor: pointer;
   font-size: var(--primary-font-size);
+  border-radius: 5px;
   padding: 15px 0;
   margin: 30px 0 10px;
-  background-color: var(--primary-color);
-  cursor: pointer;
+  background: var(--primary-color);
   text-transform: uppercase;
 }
