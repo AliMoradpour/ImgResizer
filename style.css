@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+:root {
+  --primary-color: #927dfc;
+  --primary-font-size: 0.85rem;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--primary-color);
+}
+
+.container {
+  width: 450px;
+  height: 288px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+/* Upload Box  */
+
+.container .upload-box {
+  height: 225px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px dashed #afafaf;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: height 0.2s ease;
+}
+.container.active {
+  height: 537px;
+}
+.container.active .upload-box {
+  border: none;
+}
+.container.active p {
+  display: none;
+}
+.container.active .upload-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.container.active .content {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.5s 0.5s ease;
+}
+.upload-box p {
+  font-size: var(--primary-font-size);
+  margin-top: 20px;
+}
+
+/* Content  */
+
+.container .content {
+  opacity: 0;
+  margin-top: 1.5rem;
+  pointer-events: none;
+}
+.content .row {
+  display: flex;
+  justify-content: space-between;
+}
+.content .row .column {
+  width: calc(100% / 2 - 15px);
+}
+.row .column label {
+  font-size: var(--primary-font-size);
+}
+
+/* Sizes  */
+
+.sizes .column input {
+  width: 100%;
+  height: 30px;
+  outline: none;
+  margin-top: 7px;
+  padding: 0 15px;
+  font-size: var(--primary-font-size);
+  border-radius: 4px;
+  border: 1px solid #aaa;
+}
+.sizes .column input:focus {
+  padding: 0 14px;
+  border: 2px solid var(--primary-color);
+}
+
+/* CheckBoxes  */
+
+.content .checkboxes {
+  margin-top: 1.5rem;
+}
+.checkboxes .column {
+  display: flex;
+  align-items: center;
+}
+.checkboxes .column input {
+  width: 17px;
+  height: 17px;
+  margin-right: 9px;
+  accent-color: var(--primary-color);
+}
+
+/* Button  */
+
+.content .download-btn {
+  width: 100%;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: var(--primary-font-size);
+  padding: 15px 0;
+  margin: 30px 0 10px;
+  background-color: var(--primary-color);
+  cursor: pointer;
+  text-transform: uppercase;
+}
